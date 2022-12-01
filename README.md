@@ -1,2 +1,4 @@
 # neptunite
-POC - Android / Espresso
+A mineral named for Neptune, Roman god of the sea because of its association with aegirine from Àgir, the Scandinavian sea-god
+
+## POC - Android / Espresso
