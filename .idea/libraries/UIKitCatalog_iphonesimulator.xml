@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="UIKitCatalog-iphonesimulator">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/tau_appium_java/app/ios-uicatalog/UIKitCatalog/UIKitCatalog-iphonesimulator.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
