@@ -29,6 +29,15 @@ This is a sample test framework for android, work-in-progress
    * Transition animation scale
    * Animator duration scale
 
+## ESPRESSO PRO-TIP
+When building an application, if you get the `Kotlin duplication ..` error, simply
+open build.gradle(Module:app) and add the following line to the end:
+```configurations.implementation {
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+}
+```
+... then rebuild the project
+
 ## ESPRESSO DECLARATION
 `private static final String myText = "my text";`
 replace String with proper data type
