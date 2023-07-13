@@ -29,6 +29,10 @@ This is a sample test framework for android, work-in-progress
    * Transition animation scale
    * Animator duration scale
 
+## ESPRESSO DECLARATION
+`private static final String myText = "my text";`
+replace String with proper data type
+
 ## ESPRESSO FIND ELEMENT LOCATORS
 Launch the application in your emulator then:
 `Tools > Layout Inspector > Attributes`
