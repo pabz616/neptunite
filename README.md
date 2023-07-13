@@ -28,7 +28,7 @@ This is a sample test framework for android, work-in-progress
    * Window animation scale
    * Transition animation scale
    * Animator duration scale
-
+   
 ## ESPRESSO PRO-TIP
 When building an application, if you get the `Kotlin duplication ..` error, simply
 open build.gradle(Module:app) and add the following line to the end:
