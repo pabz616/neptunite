@@ -29,6 +29,17 @@ This is a sample test framework for android, work-in-progress
    * Transition animation scale
    * Animator duration scale
 
+## ESPRESSO FIND ELEMENT LOCATORS
+Launch the application in your emulator then:
+`Tools > Layout Inspector > Attributes`
+
+As you navigate through the app, the screens will be reflected in the layout inspector window
+This allows you to interact with the elements shown and find their respective ids
+
+## ESPRESSO TEST COMPOSITE
+`@Test`
+   `public void descriptiveTestName(){ ... arrange / act / assert ...}`
+
 ## ESPRESSO VIEW MATCHERS
 
 // *** ESPRESSO VIEW MATCHERS ***
