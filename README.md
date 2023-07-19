@@ -30,6 +30,7 @@ This is a sample test framework for android, work-in-progress
    * Animator duration scale
    
 ## ESPRESSO PRO-TIP
+
 When building an application, if you get the `Kotlin duplication ..` error, simply
 open build.gradle(Module:app) and add the following line to the end:
 ```configurations.implementation {
@@ -39,10 +40,12 @@ open build.gradle(Module:app) and add the following line to the end:
 ... then rebuild the project
 
 ## ESPRESSO DECLARATION
+
 `private static final String myText = "my text";`
 replace String with proper data type
 
 ## ESPRESSO FIND ELEMENT LOCATORS
+
 Launch the application in your emulator then:
 `Tools > Layout Inspector > Attributes`
 
@@ -50,28 +53,36 @@ As you navigate through the app, the screens will be reflected in the layout ins
 This allows you to interact with the elements shown and find their respective ids
 
 ## ESPRESSO TEST COMPOSITE
+
 `@Test`
    `public void descriptiveTestName(){ ... arrange / act / assert ...}`
 
 ## ESPRESSO VIEW MATCHERS
 
-// *** ESPRESSO VIEW MATCHERS ***
-// USING RESOURCE ID
+*** ESPRESSO VIEW MATCHERS ***
+
+### USING RESOURCE ID
+
 `ViewInteraction test = onView(withId(R.id.someId));`
 
-// USING VISIBLE TEXT
+### USING VISIBLE TEXT
+
 `ViewInteraction done = onView(withText("Done"));`
 
-// USING CONTENT DESCRIPTION
+### USING CONTENT DESCRIPTION
+
 `ViewInteraction profile = onView(withContentDescription("profile"));`
 
-// USING HINT TEXT
+### USING HINT TEXT
+
 `ViewInteraction hint = onView(withHint("Simple hint"));`
 
-// USING SPINNER TEXT
+### USING SPINNER TEXT
+
 `ViewInteraction spinnerText = onView(withSpinnerText("Spinner_Text"));`
 
-// USING LINKS
+### USING LINKS
+
 `ViewInteraction linkName = onView(hasLinks(##));`
 
 ## OBJECT MATCHERS
@@ -79,53 +90,97 @@ This allows you to interact with the elements shown and find their respective id
 `onView(withClassName(endsWith("EditText")));`
 `onView(withClassName(startsWith("Hello")));`
 
-// *** DATA / LIST ADAPTER VIEW
+*** DATA / LIST ADAPTER VIEW
 
-//nData is used in case of ListView, GridView and AdapterView
+### Data is used in case of ListView, GridView and AdapterView
+
 `onData(withId("Listview_id")).atPosition(2).check(matches(isDisplayed()));`
 
 ## ESPRESSO COMMON ACTIONS
 
-// Typing inside a textbox
+### Typing inside a textbox
+
 `onView(withText("name")).perform(typeText("sample text"));`
 `onView(withText("search")).perform(typeTextIntoFocusedView("sample text"));`
 
-// Clearing text inside an input
+### Clearing text inside an input
+
 `onView(withText("name")).perform(clearText());`
 
-// Clicking a button
+### Clicking a button
+
 `onView(withText("submit")).perform(click());`
 
-// Double-Clicking a button
+### Double-Clicking a button
+
 `onView(withText("submit")).perform(doubleClick());`
 
-// Long press a button
+### Long press a button
+
 `onView(withText("submit")).perform(longClick());`
 
-// Swipe + direction (UP, DOWN, LEFT, RIGHT)
+### Swipe + direction (UP, DOWN, LEFT, RIGHT)
+
 `onView(withId(R.id.sampleView)).perform(swipeUp());`
 `onView(withId(R.id.sampleView)).perform(swipeDown());`
 `onView(withId(R.id.sampleView)).perform(swipeLeft());`
 `onView(withId(R.id.sampleView)).perform(swipeRight());`
 
-// SCROLL LIST VIEW
+### SCROLL LIST VIEW
+
 `onView(withId(R.id.listView)).perform(scrollTo());`
 `onView(withId(R.id.listView)).perform(scrollTo(), click());`
 
 ## ESPRESSO DEVICE ACTIONS
 
-// CLOSE SOFT KEYBOARD
+### CLOSE SOFT KEYBOARD
+
 `closeSoftKeyboard();`
 
-// NAVIGATE BACK ON DEVICE
+### NAVIGATE BACK ON DEVICE
+
 `pressBack();`
 
-// OPEN PHONE SPECIFIC MENU
+### OPEN PHONE SPECIFIC MENU
+
 `pressMenuKey();`
 
-// PRESS A SPECIFIC KEY
+### PRESS A SPECIFIC KEY
+
 `keycodepressKey(37);`
 
-// OPEN LINK IN BROWSER
+### OPEN LINK IN BROWSER
+
 `let url = 'https://www.google.com`
 `onView(withText(url)).perform(openLinkWithText(url));`
+
+*** ESPRESSO COMMON ASSERTIONS ***
+
+### CHECK ELEMENT IS DISPLAYED
+
+`onView(withId(R.id.anyElement)).check(matches(isDisplayed()));`
+
+### CHECK ELEMENT IS REMOVED FROM DOM
+
+`onView(withId(R.id.anyElement)).check(doesNotExist());`
+
+### CHECK ELEMENT STRING VALUE
+
+`onView(withId(R.id.anyString)).check(matches(withText(R.string.custom_string)));`
+
+### CHECK ELEMENT TEXT
+
+`onView(withId(R.id.anyText)).check(matches(withText("custom string")));`
+
+### CHECK POSITION OF ELEMENT
+
+`onView(withId(R.id.textView)).check(isLeftOf(withText("foo!")));`
+`onView(withId(R.id.textView)).check(isRightOf(withText("foo!")));`
+`onView(withId(R.id.textView)).check(isAbove(withText("foo!")));`
+`onView(withId(R.id.textView)).check(isBelow(withText("foo!")));`
+
+### CHECK ACTION OF ELEMENT THAT REQUIRES USER INTERACTION
+
+`onView(withId(R.id.anyInput)).check(matches(isFocusable()));`
+`onView(withId(R.id.button)).check(matches(isClickable()));`
+`onView(withId(R.id.checkbox)).check(matches(isNotChecked()));`
