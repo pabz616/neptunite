@@ -191,6 +191,7 @@ Use when the UIAutomator is not working. To do so, do the following:
 1. In the project structure: `app > src > androidTest > java` create a new package with something descriptive like "x.espress.errormatcher"
 2. Add a New Class like "ErrorTextMatcher"
 3. In the file, add different parameters to suit your needs (Plain Text, String Matcher, and Resource ID)
+4. In the test, import the package and use accordingly
 
 ### CUSTOM MATCHER 1 - USING PLAIN TEXT
 
