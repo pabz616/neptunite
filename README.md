@@ -184,3 +184,22 @@ This allows you to interact with the elements shown and find their respective id
 `onView(withId(R.id.anyInput)).check(matches(isFocusable()));`
 `onView(withId(R.id.button)).check(matches(isClickable()));`
 `onView(withId(R.id.checkbox)).check(matches(isNotChecked()));`
+
+***ESPRESSO CUSTOM MATCHER***
+Use when the UIAutomator is not working. To do so, do the following:
+
+1. In the project structure: `app > src > androidTest > java` create a new package with something descriptive like "x.espress.errormatcher"
+2. Add a New Class like "ErrorTextMatcher"
+3. In the file, add different parameters to suit your needs (Plain Text, String Matcher, and Resource ID)
+
+### CUSTOM MATCHER 1 - USING PLAIN TEXT
+
+`onView(withId(R.id.Element)).check(matches(CustomMatcher.withWhatever("myText")));`
+
+### CUSTOM MATCHER 2 - USING ID
+
+`onView(withId(R.id.Element)).check(ViewAssertion.matches(CustomMatcher.withWhatever(R.string.id)));`
+
+### CUSTOM MATCHER 3 - USING STRING MATCHER
+
+`onView(withId(R.id.Element)).check(ViewAssertion.matches(CustomMatcher.withWhatever(Matcher.containsString("my string"))));`
