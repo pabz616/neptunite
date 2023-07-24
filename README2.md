@@ -48,5 +48,44 @@ public class WebViewActivityTest{
 
     }
 }
+`
 
+***ESPRESSO IDLING RESOURCES***
+An idling resource represents an asynchronous operation whose results affect subsequent operations in a UI test. By registering idling resources with Espresso, you can validate these asynchronous operations more reliably when testing your app.
+
+### Uses for Idling Resources
+
+1. Loading data from the internet or a local data source.
+2. Establishing connections with databases and callbacks.
+3. Managing services, either using a system service or an instance of IntentService.
+4. Performing complex business logic, such as bitmap transformations.
+
+CODE SNIPPET:
+`
+Imports go here
+
+public class TestIdlingResource{
+        @Rule public ActivityTestRule<MainActivity> activityTestRule
+        = new ActivityTestRule<>(MainActivity.class);
+
+    private IdlingResource myIdling ;
+
+    @Before
+    public void registerIdlingResources()
+    {
+        myIdling = activityTestRule.getActivity().getIdlingResource();
+        IdlingRegistry.getInstance().register(myIdling);
+    }
+
+    @After
+    public void unRegisterIdlingResources()
+    {
+        if (myIdling != null){
+            IdlingRegistry.getInstance().unregister(myIdling);
+        }
+    
+    @Test
+    //code goes here ...
+    }
+}
 `
