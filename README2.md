@@ -127,6 +127,9 @@ Similar to android espresso, but with subtle nuances
 * `onView(withText(variableName))`
 * `onView(withId(R.id.x)).check(ViewAssertions.matches(isDisplayed(Y)))`
 * `onView(withId(R.id.x)).check(ViewAssertions.matches(isChecked(Y)))`
+
+These require importing hamcrest matchers (see notes under AdapterView)
+
 * `onView(withId(R.id.x)).check(ViewAssertions.matches(isEqualTo(Y)))`
 * `onView(withId(R.id.x)).check(ViewAssertions.matches(isAllOf(Foo)))`
 * `onView(withId(R.id.x)).check(ViewAssertions.matches(isAnyOf(Bar)))`
@@ -141,3 +144,28 @@ Similar to android espresso, but with subtle nuances
 ### ActivityTestRule
 
 Is executed before each test (@BeforeEach)
+
+### Testing AdapterView Items
+
+Consider the likelihood of testing view fragments that have either a ListView, Spinner or some-such items
+`
+  import org.hamcrest.Matchers.*
+  //ALL OTHER IMPORTS GO HERE
+
+  @RunWith(AndroidJUnit4ClassRunner::class)
+  classAdapterViewModelTest{
+
+    @get:Rule
+    val activityRule = ActivityTestRule(MainActivity::class.java)
+
+    @Test
+    fun selectItem(){
+        val menu = onView(withId(R.id.spinnerView))
+        val menuItem = onData(allOf(instanceOf(Reminder::class.java), equalTo(ReminderItem("message"))))
+
+        menu.perform(click())
+        menuItem.perform(click())
+
+    }
+  }
+`
