@@ -49,3 +49,19 @@ public class AwesomeTest extends TestBase{
     }
 }
 ```
+
+***ESPRESSO ANNOTATIONS***
+
+### Adding tags to the tests
+Create a `utils` directory and consider doing something like this:
+
+```
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface E2ETest{}
+
+```
