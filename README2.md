@@ -89,3 +89,55 @@ public class TestIdlingResource{
     }
 }
 `
+
+***KOTLIN + ESPRESSO***
+
+Similar to android espresso, but with subtle nuances
+
+`
+  //IMPORTS GO HERE
+
+  @RunWith(AndroidJUnit4ClassRunner::class)
+  class ReminderViewModelTest{
+
+    @get:Rule
+    val activityRule = ActivityTestRule(MainActivity::class.java)
+
+    @Test
+    fun getReminders(){
+        val reminderName = "TestAA"
+        val createReminderBtn = onView(withId(R.id.fab))
+        val reminderNameInput = onView(withId(R.id.edReminder))
+        val submitReminderBtn = onView(withId(R.id.btnAdd))
+        val newReminder = onView(withText(reminderName))
+
+        createReminderBtn.perform(click())
+        reminderNameInput.perform(typeText(reminderName))
+        closeSoftKeyboard()
+        submitReminderBtn.perform(click())
+        pressBack()
+        newReminder.check(ViewAssertions.matches(isDisplayed()))
+    }
+  }
+`
+
+### ViewMatchers include:
+
+* `onView(withId(R.id.x))`
+* `onView(withText(variableName))`
+* `onView(withId(R.id.x)).check(ViewAssertions.matches(isDisplayed(Y)))`
+* `onView(withId(R.id.x)).check(ViewAssertions.matches(isChecked(Y)))`
+* `onView(withId(R.id.x)).check(ViewAssertions.matches(isEqualTo(Y)))`
+* `onView(withId(R.id.x)).check(ViewAssertions.matches(isAllOf(Foo)))`
+* `onView(withId(R.id.x)).check(ViewAssertions.matches(isAnyOf(Bar)))`
+
+### ViewActions include
+
+* `onView(withId(R.id.x)).perform(click())`
+* `onView(withId(R.id.x)).perform(typeText(testData))`
+* `onView(withId(R.id.x)).perform(replaceText(testData))`
+* `closeSoftKeyboard()`
+
+### ActivityTestRule
+
+Is executed before each test (@BeforeEach)
